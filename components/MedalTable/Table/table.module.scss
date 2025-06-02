@@ -1,0 +1,82 @@
+ 
+ 
+ .medalTableWrapper {
+    max-width: 96%;
+    overflow: auto;
+    table {
+        font-family: var(--font-family-outfit);
+        font-weight: 400;
+        border-collapse: collapse;
+        min-width: 280px;
+        text-align: center;
+        border:0;
+        @media(min-width:1024px) {
+            width: 400px;
+        }
+        td,th {
+        padding: 0.8rem 0.5rem;
+        margin: 0;
+        border-collapse: collapse;
+            text-transform: uppercase;
+        }
+        th {
+        font-family: var(--font-family-outfit);
+         font-weight: 700;
+        cursor: pointer;
+        border-bottom: 2px solid #999191;
+        border-top: 2px solid rgba(0,0,0,0);
+        color: #676464;
+         > span {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+         }
+         &:nth-of-type(2) {
+            span {
+                background-color: gold;
+            }
+         }
+         &:nth-of-type(3) {
+            span {
+                background-color: silver;
+            }
+         }
+         &:nth-of-type(4) {
+            span {
+                background-color: brown;
+            }
+         }
+        }
+        tr {
+        border-bottom: 1px solid #999191;
+        }
+        td {
+        color: #696262;
+        font-family: var(--font-family-outfit);
+         font-weight: 400;
+        vertical-align: middle;
+        }
+
+    }
+        .flagBg {
+        background-image: url('/flags.png');
+        display: inline-block;
+        width: 2.5rem;
+        height: 1.2rem;
+        display: inline-block;
+        background-repeat: no-repeat;
+        vertical-align: middle;
+     }
+     .activeCol {
+        border-top-color:#999191;
+     }
+     .totalText {
+         font-family: var(--font-family-outfit);
+         font-weight: 700;
+     }
+     .noText {
+        font-weight: 700;
+        margin-right: 0.5rem;
+     }
+   }

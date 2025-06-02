@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "@/feature/store/StoreProvider";
 import { Outfit } from "next/font/google";
@@ -24,10 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={internalFont.variable}>
       <body>
-        <StoreProvider>
-          {children}
+        <div className="container">
+          <StoreProvider>
+            {children}
         </StoreProvider>
-       
+        </div>
       </body>
     </html>
   );

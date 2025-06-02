@@ -1,0 +1,19 @@
+.pageWrapper {
+      font-family: var(--font-family-outfit);
+ padding: 2rem;
+  .tableHeadSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h1 {
+        font-size: 2.5rem;
+        color: #a52a2a;
+    }
+  }
+   a {
+    color: #5da0db;
+    padding: 0.5rem;
+    font-weight: 700;
+     text-decoration: underline;
+   }
+}

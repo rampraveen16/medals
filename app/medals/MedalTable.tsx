@@ -1,0 +1,64 @@
+'use client'
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/feature/store/store'
+import { useEffect, useState } from 'react';
+import { fetchIssues } from '@/feature/slices/medelSlices';
+import { Medals } from '@/types/Medals';
+import { orderBy } from 'lodash';
+import classes from './medals.module.scss'
+import { utils } from '@/lib/utils';
+import Table from '@/components/MedalTable/Table/Table';
+
+type SortKey = keyof Medals;
+type FlagPosition = {
+    [code:string]: string
+}
+
+export const MedalTable: React.FC = () => {
+  const dispatch:AppDispatch = useDispatch();
+  const { medals, error, status } = useSelector((state: RootState ) => state.medelList);
+  const [ medalList, setMedalList] = useState<Medals[]>(medals)
+  const [flagPos, setFlagPos] =  useState<FlagPosition>({})
+  const [seletedCol, setSelectedCol] = useState<string>('')
+
+    useEffect(()=>{
+        if(status === 'idle') {
+            dispatch(fetchIssues())
+        }
+    },[status, dispatch])
+
+    useEffect(()=>{
+
+        if(medals.length > 0) {
+            let data = orderBy(medals,['total'],['desc'])  
+            let firstTenList = utils.filterTenArray(data)
+            setMedalList(firstTenList)
+            let flagObj = {}
+            medals.forEach((list)=>{
+                flagObj = {
+                    ...flagObj,
+                    [list.code]:utils.flagBgPosition(list.code)
+                }
+            })
+            setFlagPos(flagObj)
+       
+        }
+    },[medals])
+
+  function handleSort (key:SortKey):void {
+    let data = orderBy(medals,[key,'total'],['desc', 'desc'])    
+    let firstTenList = utils.filterTenArray(data)
+    setSelectedCol(key)
+    setMedalList(firstTenList)
+  }
+
+  if (error) return <div className='pageInfoError'><p>Error: {error}</p></div>;
+
+  return (
+    <div className={classes.medalTableWrapper}>
+        <Table data={medalList} flagPos={flagPos} handleSort={handleSort} seletedCol={seletedCol} />
+    </div>
+  );
+};
+
+export default MedalTable
