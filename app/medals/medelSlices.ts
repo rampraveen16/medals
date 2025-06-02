@@ -8,8 +8,8 @@ export const fetchIssues = createAsyncThunk<Medals[]>(
     try {
       const response = await instance.get<Medals[]>('/medals.json');
       return response.data;
-    } catch (error:any) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Something went wrong');
     }
   }
 );
@@ -18,14 +18,14 @@ interface IssuesState {
   medals: Medals[];
   status:string;
   loading: boolean;
-  error: any;
+  error: string;
 }
 
 const initialState: IssuesState = {
   medals: [],
   status:'idle',
   loading: false,
-  error: null,
+  error: '',
 };
 
 export const medelSlices = createSlice({
@@ -37,7 +37,7 @@ export const medelSlices = createSlice({
       .addCase(fetchIssues.pending, (state) => {
         state.loading = true;
         state.status = 'loading';
-        state.error = null;
+        state.error = '';
       })
       .addCase(fetchIssues.fulfilled, (state, action) => {
         state.loading = false;
@@ -54,7 +54,7 @@ export const medelSlices = createSlice({
       .addCase(fetchIssues.rejected, (state, action) => {
         state.loading = false;
         state.status = 'failed';
-        state.error = action.payload || 'Something went wrong';
+        state.error =  'Something went wrong';
       });
   },
 });
