@@ -51,7 +51,7 @@ export const MedalTable: React.FC = () => {
     setSelectedCol(key)
     setMedalList(firstTenList)
   }
-
+  console.log(error)
   if (error) return <div className='pageInfoError'><p>An error occurred</p></div>;
 
   return (
