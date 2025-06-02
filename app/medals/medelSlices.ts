@@ -1,15 +1,23 @@
 import instance from '@/services/axiosInstance';
 import { Medals } from '@/types/Medals';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
-export const fetchIssues = createAsyncThunk<Medals[]>(
+  interface MyError {
+        message: string;
+  }
+export const fetchIssues = createAsyncThunk<// Return type of the fulfilled action
+        Medals[], 
+        // Argument type of the thunk
+        void, 
+        {
+            rejectValue: MyError
+        }>(
   'get/medalList',
   async (_, thunkAPI) => {
     try {
       const response = await instance.get<Medals[]>('/medals.json');
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue('Something went wrong');
+      return thunkAPI.rejectWithValue({ message: 'An error occurred' });
     }
   }
 );
@@ -18,14 +26,14 @@ interface IssuesState {
   medals: Medals[];
   status:string;
   loading: boolean;
-  error: string;
+  error: MyError | null | string;
 }
 
 const initialState: IssuesState = {
   medals: [],
   status:'idle',
   loading: false,
-  error: '',
+  error: null,
 };
 
 export const medelSlices = createSlice({
@@ -37,7 +45,7 @@ export const medelSlices = createSlice({
       .addCase(fetchIssues.pending, (state) => {
         state.loading = true;
         state.status = 'loading';
-        state.error = '';
+        state.error = null;
       })
       .addCase(fetchIssues.fulfilled, (state, action) => {
         state.loading = false;
@@ -54,7 +62,7 @@ export const medelSlices = createSlice({
       .addCase(fetchIssues.rejected, (state, action) => {
         state.loading = false;
         state.status = 'failed';
-        state.error =  'Something went wrong';
+        state.error = action.payload || 'Something went wrong';
       });
   },
 });
