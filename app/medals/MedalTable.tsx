@@ -52,7 +52,7 @@ export const MedalTable: React.FC = () => {
     setMedalList(firstTenList)
   }
 
-  if (error) return <div className='pageInfoError'><p>Error: {error}</p></div>;
+  if (error) return <div className='pageInfoError'><p>An error occurred</p></div>;
 
   return (
     <div className={classes.medalTableWrapper}>
