@@ -6,7 +6,7 @@ export const fetchIssues = createAsyncThunk<Medals[]>(
   'get/medalList',
   async (_, thunkAPI) => {
     try {
-      const response = await instance.get<Medals[]>('/medas.json');
+      const response = await instance.get<Medals[]>('/medals.json');
       return response.data;
     } catch (error:any) {
       return thunkAPI.rejectWithValue(error.message);

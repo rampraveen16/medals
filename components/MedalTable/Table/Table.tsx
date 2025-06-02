@@ -4,11 +4,11 @@ import classes from './table.module.scss'
 type FlagPosition = {
     [code:string]: string,
 }
-
+type SortKey = keyof Medals;
 type TableProps = {
     data:Medals[],
     flagPos:FlagPosition,
-    handleSort:Function,
+    handleSort:(mes:SortKey)=>void,
     seletedCol:string
 }
 export default function Table({data,flagPos,handleSort,seletedCol}:TableProps){

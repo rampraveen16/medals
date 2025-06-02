@@ -30,8 +30,8 @@ export const MedalTable: React.FC = () => {
     useEffect(()=>{
 
         if(medals.length > 0) {
-            let data = orderBy(medals,['total'],['desc'])  
-            let firstTenList = utils.filterTenArray(data)
+            const data = orderBy(medals,['total'],['desc'])  
+            const firstTenList = utils.filterTenArray(data)
             setMedalList(firstTenList)
             let flagObj = {}
             medals.forEach((list)=>{
@@ -46,8 +46,8 @@ export const MedalTable: React.FC = () => {
     },[medals])
 
   function handleSort (key:SortKey):void {
-    let data = orderBy(medals,[key,'total'],['desc', 'desc'])    
-    let firstTenList = utils.filterTenArray(data)
+    const data = orderBy(medals,[key,'total'],['desc', 'desc'])    
+    const firstTenList = utils.filterTenArray(data)
     setSelectedCol(key)
     setMedalList(firstTenList)
   }
