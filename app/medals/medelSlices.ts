@@ -1,3 +1,4 @@
+ /* eslint-disable @typescript-eslint/no-unused-vars */
 import instance from '@/services/axiosInstance';
 import { Medals } from '@/types/Medals';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
