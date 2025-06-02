@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { medelSlices } from '../slices/medelSlices';
+import { medelSlices } from './app/medals/medelSlices';
 
 export const store = configureStore({
   reducer: {

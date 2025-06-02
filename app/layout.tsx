@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import StoreProvider from "@/feature/store/StoreProvider";
+import StoreProvider from "@/StoreProvider";
 import { Outfit } from "next/font/google";
 
 export const metadata: Metadata = {

@@ -1,8 +1,8 @@
 'use client'
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '@/feature/store/store'
+import { AppDispatch, RootState } from '@/store'
 import { useEffect, useState } from 'react';
-import { fetchIssues } from '@/feature/slices/medelSlices';
+import { fetchIssues } from '@/app/medals/medelSlices';
 import { Medals } from '@/types/Medals';
 import { orderBy } from 'lodash';
 import classes from './medals.module.scss'
